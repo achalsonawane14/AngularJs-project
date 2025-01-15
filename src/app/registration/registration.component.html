@@ -1,0 +1,71 @@
+<div class="container">
+    <header class="header">
+      <h1 class="logo">DemoTest</h1>
+      <a href="#" class="login-link">Login</a>
+    </header>
+  
+    <main class="main-content">
+      <div class="registration-card">
+        <h2 class="form-title">Registration</h2>
+        <form (ngSubmit)="onSubmit()" class="form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              [(ngModel)]="user.name"
+              name="name"
+              class="form-control"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="user.email"
+              name="email"
+              class="form-control"
+              placeholder="Enter your email"
+              required
+            />
+            <!-- Gmail validation error -->
+            <div *ngIf="user.email && !validateGmail(user.email)" class="error-message">
+              Please enter a valid Gmail address.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="mobile">Mobile No.</label>
+            <input
+              type="text"
+              id="mobile"
+              [(ngModel)]="user.mobile"
+              name="mobile"
+              class="form-control"
+              placeholder="Enter your mobile number"
+              required
+            />
+            <!-- Mobile number validation error -->
+            <div *ngIf="user.mobile && !validateMobileNumber(user.mobile)" class="error-message">
+              Mobile number is wrong. Please enter a valid 10-digit mobile number.
+            </div>
+          </div>
+  
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </div>
+  
+      <div class="message-card">
+        <h3 class="message-title">Message</h3>
+        <p *ngIf="user.name">Test registration successfully,</p>
+        <p *ngIf="user.name"><strong>Registered Name:</strong> {{ user.name }}</p>
+        <p *ngIf="user.email"><strong>Registered Email:</strong> {{ user.email }}</p>
+        <p *ngIf="user.mobile"><strong>Registered Mobile No.:</strong> {{ user.mobile }}</p>
+      </div>
+    </main>
+  </div>
+  
